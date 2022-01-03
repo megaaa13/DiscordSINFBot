@@ -11,6 +11,7 @@ const strs = {
 module.exports = {
 	trans(user, str) {
 		const lang = user?.locale;
+		console.log(user);
 
 		if (!lang) {
 			return str;
@@ -23,6 +24,7 @@ module.exports = {
 		const map = strs[str];
 
 		if (!(lang in map)) {
+			console.log(`Unknown locale! (${lang})`);
 			return str;
 		}
 
