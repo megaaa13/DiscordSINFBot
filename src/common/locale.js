@@ -1,12 +1,11 @@
+const strs = {
+	"A poll may not have a single possible answer": {
+		"fr": "Un sondage ne peut pas avoir qu'une seule réponse possible"
+	},
 
-const { fs } = require("fs");
-
-const langs = fs.readdirSync("langs").map((filename) => filename.split('.')[0]);
-var maps = {};
-
-for (var lang of langs) {
-	const { map } = require(`langs/${lang}`);
-	maps[lang] = map;
+	"You may not have more than {0} possible answers (you passed {1})": {
+		"fr": "Un sondage ne peut pas avoir plus de {0} réponses possible (vous en avez passé {1})"
+	}
 }
 
 module.exports = {
@@ -17,16 +16,16 @@ module.exports = {
 			return str;
 		}
 
-		if (!langs.includes(lang)) {
+		if (!(str in strs)) {
 			return str;
 		}
 
-		let map = maps[lang];
+		const map = strs[str];
 
-		if (!map.includes(str)) {
+		if (!(lang in map)) {
 			return str;
 		}
 
-		return map[str];
+		return map[lang];
 	}
 };
