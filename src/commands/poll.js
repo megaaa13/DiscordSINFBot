@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 const { MessageEmbed } = require('discord.js')
+const { trans } = require('../common/locale')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -47,7 +48,7 @@ module.exports = {
 
     if (answers?.length == 1) {
       return interaction.reply({
-        content: 'A poll may not have a single possible answer',
+        content: trans(interaction.user, 'A poll may not have a single possible answer'),
         ephemeral: true,
       })
     }
